@@ -53,7 +53,7 @@ public class M3Printer extends CordovaPlugin {
 
 			// InputStream is2 = context.getResources().openRawResource(R.raw.img);
 			// InputStream is3 = context.getResources().openRawResource(R.raw.test);
-			InputStream is = context.getResources().openRawResource(R.mipmap.bitmap24);
+			InputStream is = context.getResources().openRawResource(R.drawable.bitmap24);
 			print.printBitmap(is);
 			// print.printBitmap("/sdcard/myimage/forprint.bmp");
 
