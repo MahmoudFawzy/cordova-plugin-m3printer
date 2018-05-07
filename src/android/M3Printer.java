@@ -35,6 +35,12 @@ import java.util.List;
 import android.content.*;
 import android.R;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+
 public class M3Printer extends CordovaPlugin {
 	public static com.nbbse.mobiprint3.Printer print;
 	public Context context;
