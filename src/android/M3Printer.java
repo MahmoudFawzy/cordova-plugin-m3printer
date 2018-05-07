@@ -35,22 +35,15 @@ import java.util.List;
 import android.content.*;
 import android.R;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.drawable.*;
-
 public class M3Printer extends CordovaPlugin {
 	public static com.nbbse.mobiprint3.Printer print;
 	public Context context;
-	public CordovaInterface cordova;
 
 	public void initialize(CordovaInterface cordova, CordovaWebView webView) {
 		super.initialize(cordova, webView);
 		print = Printer.getInstance();
 		context = this.cordova.getActivity().getApplicationContext();
-		this.cordova = cordova;
+
 	}
 
 	@Override
@@ -62,70 +55,69 @@ public class M3Printer extends CordovaPlugin {
 			// InputStream is3 = context.getResources().openRawResource(R.raw.test);
 			// InputStream is = context.getResources().openRawResource(R.raw.bitmap24);
 			// print.printBitmap(is);
+
+			JSONObject json = new JSONObject(txt);
+			JSONArray jReciept = json.getJSONArray("Fields");
+
+			for (int i = 0; i < jReciept.length(); i++) {
+				JSONObject jO = jReciept.getJSONObject(i);
+
+				print.printText(jO.getString("FieldName"), 1, true);
+				print.printText(jO.getString("Value"), 1, false);
+			}
+
+			print.printText("تكلفة الخدمة", 1, true);
+			print.printText(json.getString("Totalprice"), 1, false);
+
+			print.printText("رسوم التحصيل", 1, true);
+			print.printText(json.getString("Fees"), 1, false);
+
+			int tot = json.getInt("Totalprice") + json.getInt("Fees");
+			print.printText("الإجمالي", 1, true);
+			print.printText(String.valueOf(tot), 1, false);
+
+			String sDate = json.getString("AddedTime");
+
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+			Date convertedDate = new Date();
+			try {
+				convertedDate = dateFormat.parse(sDate);
+			} catch (ParseException ex) {
+				// Do something
+			}
+			SimpleDateFormat dateFormat_date = new SimpleDateFormat("dd-MM-yyyy");
+			SimpleDateFormat dateFormat_time = new SimpleDateFormat("hh:mm aa");
+
+			print.printText("تاريخ التحصيل", 1, true);
+			print.printText(dateFormat_date.format(convertedDate), 1, false);
+
+			print.printText("وقت التحصيل", 1, true);
+			print.printText(dateFormat_time.format(convertedDate), 1, false);
+
+			print.printText("رقم الفرع", 1, true);
+			print.printText(json.getString("AgentCode"), 1, false);
+
+			print.printText("رقم الفاتورة", 1, true);
+			print.printText(json.getString("InvoiceId"), 1, false);
+
+			int s = json.getInt("Status");
+			String s_str = "غير محدد";
+			if (s == 0) {
+				s_str = "التنفيذ";
+			} else if (s == 2) {
+				s_str = "مسترجع";
+			} else if (s == 1 || s == 3 || s == 4) {
+				s_str = "مسدد";
+			}
+			print.printText("حالة الفاتورة", 1, true);
+			print.printText(s_str, 1, false);
+
+			print.printText("--------------------------------");
+			print.printText(json.getString("Footer"), 1, true);
+
 			print.printEndLine();
-			callbackContext.success(22);
+			callbackContext.success("1");
 			return true;
-			/*
-			 * Resources activityRes = cordova.getActivity().getResources(); int backResId =
-			 * activityRes.getIdentifier("img", "drawable",
-			 * cordova.getActivity().getPackageName()); Drawable backIcon =
-			 * activityRes.getDrawable(backResId); Bitmap bmp = drawableToBitmap(backIcon);
-			 * 
-			 * 
-			 * print.printBitmap(bmp);
-			 * 
-			 * JSONObject json = new JSONObject(txt); JSONArray jReciept =
-			 * json.getJSONArray("Fields");
-			 * 
-			 * for (int i = 0; i < jReciept.length(); i++) { JSONObject jO =
-			 * jReciept.getJSONObject(i);
-			 * 
-			 * print.printText(jO.getString("FieldName"), 1, true);
-			 * print.printText(jO.getString("Value"), 1, false); }
-			 * 
-			 * print.printText("تكلفة الخدمة", 1, true);
-			 * print.printText(json.getString("Totalprice"), 1, false);
-			 * 
-			 * print.printText("رسوم التحصيل", 1, true);
-			 * print.printText(json.getString("Fees"), 1, false);
-			 * 
-			 * int tot = json.getInt("Totalprice") + json.getInt("Fees");
-			 * print.printText("الإجمالي", 1, true);
-			 * print.printText(String.valueOf(tot), 1, false);
-			 * 
-			 * String sDate = json.getString("AddedTime");
-			 * 
-			 * SimpleDateFormat dateFormat = new
-			 * SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS"); Date convertedDate = new
-			 * Date(); try { convertedDate = dateFormat.parse(sDate); } catch
-			 * (ParseException ex) { // Do something } SimpleDateFormat dateFormat_date =
-			 * new SimpleDateFormat("dd-MM-yyyy"); SimpleDateFormat dateFormat_time = new
-			 * SimpleDateFormat("hh:mm aa");
-			 * 
-			 * print.printText("تاريخ التحصيل", 1, true);
-			 * print.printText(dateFormat_date.format(convertedDate), 1, false);
-			 * 
-			 * print.printText("وقت التحصيل", 1, true);
-			 * print.printText(dateFormat_time.format(convertedDate), 1, false);
-			 * 
-			 * print.printText("رقم الفرع", 1, true);
-			 * print.printText(json.getString("AgentCode"), 1, false);
-			 * 
-			 * print.printText("رقم الفاتورة", 1, true);
-			 * print.printText(json.getString("InvoiceId"), 1, false);
-			 * 
-			 * int s = json.getInt("Status"); String s_str = "غير محدد"; if (s == 0)
-			 * { s_str = "التنفيذ"; } else if (s == 2) { s_str = "مسترجع"; }
-			 * else if (s == 1 || s == 3 || s == 4) { s_str = "مسدد"; }
-			 * print.printText("حالة الفاتورة", 1, true); print.printText(s_str,
-			 * 1, false);
-			 * 
-			 * print.printText("--------------------------------");
-			 * print.printText(json.getString("Footer"), 1, true);
-			 * 
-			 * print.printEndLine(); callbackContext.success("1"); return true;
-			 * 
-			 */
 		} else if (action.equals("printJson")) {
 			String txt = args.getString(0);
 
@@ -154,7 +146,7 @@ public class M3Printer extends CordovaPlugin {
 			options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 			Bitmap bitmap = BitmapFactory.decodeFile(txt, options);
 
-			print.printBitmap(bitmap);
+			print.printBitmap(txt);
 			print.printEndLine();
 			callbackContext.success(bitmap.getWidth());
 			return true;
@@ -199,30 +191,6 @@ public class M3Printer extends CordovaPlugin {
 			argb[i] = color;
 		}
 
-	}
-
-	public static Bitmap drawableToBitmap(Drawable drawable) {
-		Bitmap bitmap = null;
-
-		if (drawable instanceof BitmapDrawable) {
-			BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-			if (bitmapDrawable.getBitmap() != null) {
-				return bitmapDrawable.getBitmap();
-			}
-		}
-
-		if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
-			bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1
-																			// pixel
-		} else {
-			bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(),
-					Bitmap.Config.ARGB_8888);
-		}
-
-		Canvas canvas = new Canvas(bitmap);
-		drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-		drawable.draw(canvas);
-		return bitmap;
 	}
 
 	private static Bitmap resizeImage(Bitmap bitmap, int w, int h) {
