@@ -163,7 +163,7 @@ public class M3Printer extends CordovaPlugin {
 			options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 			Bitmap bitmap = BitmapFactory.decodeFile(txt, options);
 
-			print.printBitmap(txt);
+			print.printBitmap(bitmap);
 			print.printEndLine();
 			callbackContext.success(bitmap.getWidth());
 			return true;
