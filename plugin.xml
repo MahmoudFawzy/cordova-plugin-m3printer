@@ -24,6 +24,6 @@
         <source-file src="src/android/M3Printer.java" target-dir="src/com/m3printer/plugin/" />
         <source-file src="src/android/BitmapEncoder.java" target-dir="src/com/m3printer/plugin/" />
         <!--[resources]-->
-        <!-- <source-file src="src/res/bitmap24.bmp" target-dir="res/mipmap/bitmap24.bmp" /> -->
+        <resource-file src="src/res/drawable/bitmap24.bmp" target="res/drawable/bitmap24.bmp" />
     </platform>
 </plugin>
