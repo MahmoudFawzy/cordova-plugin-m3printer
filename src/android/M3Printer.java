@@ -118,6 +118,27 @@ public class M3Printer extends CordovaPlugin {
 			print.printEndLine();
 			callbackContext.success("1");
 			return true;
+		} else if (action.equals("printJson")) {
+			String txt = args.getString(0);
+
+			// InputStream is2 = context.getResources().openRawResource(R.raw.img);
+			// InputStream is3 = context.getResources().openRawResource(R.raw.test);
+			// InputStream is = context.getResources().openRawResource(R.raw.bitmap24);
+			// print.printBitmap(is);
+
+			JSONObject json = new JSONObject(txt);
+			JSONArray jReciept = json.getJSONArray("data");
+
+			for (int i = 0; i < jReciept.length(); i++) {
+				JSONObject jO = jReciept.getJSONObject(i);
+
+				print.printText(jO.getString("label"), 1, true);
+				print.printText(jO.getString("value"), 1, false);
+			}
+
+			print.printEndLine();
+			callbackContext.success("1");
+			return true;
 		} else if (action.equals("printPath")) {
 			String txt = args.getString(0);
 

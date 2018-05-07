@@ -15,6 +15,9 @@ var printer = {
     printText: function(text, onSuccess, onError) {
         exec(onSuccess, onError, "M3Printer", "printText", [text]);
     },
+    printJson: function(text, onSuccess, onError) {
+        exec(onSuccess, onError, "M3Printer", "printJson", [text]);
+    },
     printBase64: function(base64, onSuccess, onError) {
         exec(onSuccess, onError, "M3Printer", "printBase64", [base64]);
     },
