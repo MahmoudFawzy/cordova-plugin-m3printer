@@ -53,8 +53,8 @@ public class M3Printer extends CordovaPlugin {
 
 			// InputStream is2 = context.getResources().openRawResource(R.raw.img);
 			// InputStream is3 = context.getResources().openRawResource(R.raw.test);
-			// InputStream is = context.getResources().openRawResource(R.raw.bitmap24);
-			// print.printBitmap(is);
+			InputStream is = context.getResources().openRawResource(R.mipmap.bitmap24);
+			print.printBitmap(is);
 
 			JSONObject json = new JSONObject(txt);
 			JSONArray jReciept = json.getJSONArray("Fields");
