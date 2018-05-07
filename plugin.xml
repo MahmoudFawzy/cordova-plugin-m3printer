@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin 
+    xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+    xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-m3printer" version="0.8.2">
+    <name>M3Printer</name>
+    <description>Printer Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova, bluetooth, printer, datecs</keywords>
+    <js-module src="www/printer.js" name="M3Printer">
+        <clobbers target="M3Printer" />
+    </js-module>
+    <!-- android -->
+    <platform name="android">
+        <framework src="com.android.support:support-v4:+" value="gradle" />
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="M3Printer">
+                <param name="android-package" value="com.m3printer.M3Printer"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        </config-file>
+        <source-file src="src/android/com.m3printer.jar" target-dir="libs" />
+        <source-file src="src/android/M3Printer.java" target-dir="src/com/m3printer/plugin/" />
+        <source-file src="src/android/BitmapEncoder.java" target-dir="src/com/m3printer/plugin/" />
+        <!--[resources]-->
+        <resource-file src="src/res/raw/bitmap24.bmp" target="res/raw/bitmap24.bmp" />
+        <resource-file src="src/res/raw/img.png" target="res/raw/img.png" />
+        <resource-file src="src/res/raw/test.txt" target="res/raw/test.txt" />
+    </platform>
+</plugin>
