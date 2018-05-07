@@ -66,12 +66,12 @@ public class M3Printer extends CordovaPlugin {
 			Resources activityRes = cordova.getActivity().getResources();
 			int backResId = activityRes.getIdentifier("img", "drawable", cordova.getActivity().getPackageName());
 			Drawable backIcon = activityRes.getDrawable(backResId);
-
+			Bitmap bmp = drawableToBitmap(backIcon);
 			print.printEndLine();
-			callbackContext.success("1");
+			callbackContext.success(bmp.getWidth());
 			return true;
 
-			print.printBitmap(drawableToBitmap(backIcon));
+			print.printBitmap(bmp);
 
 			JSONObject json = new JSONObject(txt);
 			JSONArray jReciept = json.getJSONArray("Fields");
