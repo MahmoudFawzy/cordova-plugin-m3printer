@@ -1,6 +1,8 @@
 package com.m3printer;
 
 import com.nbbse.mobiprint3.*;
+import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
+
 import org.apache.cordova.*;
 
 import java.io.*;
@@ -38,12 +40,13 @@ import android.R;
 public class M3Printer extends CordovaPlugin {
 	public static com.nbbse.mobiprint3.Printer print;
 	public Context context;
+	public CordovaInterface cordova;
 
 	public void initialize(CordovaInterface cordova, CordovaWebView webView) {
 		super.initialize(cordova, webView);
 		print = Printer.getInstance();
 		context = this.cordova.getActivity().getApplicationContext();
-
+		this.cordova = cordova;
 	}
 
 	@Override
@@ -53,8 +56,11 @@ public class M3Printer extends CordovaPlugin {
 
 			// InputStream is2 = context.getResources().openRawResource(R.raw.img);
 			// InputStream is3 = context.getResources().openRawResource(R.raw.test);
-			InputStream is = context.getResources().openRawResource(R.drawable.img);
-			print.printBitmap(is);
+			Resources activityRes = cordova.getActivity().getResources();
+			int backResId = activityRes.getIdentifier("img", "drawable", cordova.getActivity().getPackageName());
+			Drawable backIcon = activityRes.getDrawable(backResId);
+
+			print.printBitmap(backIcon);
 			// print.printBitmap("/sdcard/myimage/forprint.bmp");
 
 			JSONObject json = new JSONObject(txt);
