@@ -57,7 +57,7 @@ public class M3Printer extends CordovaPlugin {
 			// print.printBitmap(is);
 
 			JSONObject json = new JSONObject(txt);
-			JSONArray jReciept = json.getJSONObject("Reciept").getJSONArray("Fields");
+			JSONArray jReciept = json.getJSONArray("Fields");
 
 			for (int i = 0; i < jReciept.length(); i++) {
 				JSONObject jO = jReciept.getJSONObject(i);
@@ -67,16 +67,16 @@ public class M3Printer extends CordovaPlugin {
 			}
 
 			print.printText("تكلفة الخدمة", 1, true);
-			print.printText(json.getJSONObject("Reciept").getString("Totalprice"), 1, false);
+			print.printText(json.getString("Totalprice"), 1, false);
 
 			print.printText("رسوم التحصيل", 1, true);
-			print.printText(json.getJSONObject("Reciept").getString("Fees"), 1, false);
+			print.printText(json.getString("Fees"), 1, false);
 
-			int tot = json.getJSONObject("Reciept").getInt("Totalprice") + json.getJSONObject("Reciept").getInt("Fees");
+			int tot = json.getInt("Totalprice") + json.getInt("Fees");
 			print.printText("الإجمالي", 1, true);
 			print.printText(String.valueOf(tot), 1, false);
 
-			String sDate = json.getJSONObject("Reciept").getString("AddedTime");
+			String sDate = json.getString("AddedTime");
 
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
 			Date convertedDate = new Date();
@@ -95,12 +95,12 @@ public class M3Printer extends CordovaPlugin {
 			print.printText(dateFormat_time.format(convertedDate), 1, false);
 
 			print.printText("رقم الفرع", 1, true);
-			print.printText(json.getJSONObject("Reciept").getString("AgentCode"), 1, false);
+			print.printText(json.getString("AgentCode"), 1, false);
 
 			print.printText("رقم الفاتورة", 1, true);
-			print.printText(json.getJSONObject("Reciept").getString("InvoiceId"), 1, false);
+			print.printText(json.getString("InvoiceId"), 1, false);
 
-			int s = json.getJSONObject("Reciept").getInt("Status");
+			int s = json.getInt("Status");
 			String s_str = "غير محدد";
 			if (s == 0) {
 				s_str = "التنفيذ";
@@ -113,7 +113,7 @@ public class M3Printer extends CordovaPlugin {
 			print.printText(s_str, 1, false);
 
 			print.printText("--------------------------------");
-			print.printText(json.getJSONObject("Reciept").getString("Footer"), 1, true);
+			print.printText(json.getString("Footer"), 1, true);
 
 			print.printEndLine();
 			callbackContext.success("1");
