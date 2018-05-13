@@ -60,7 +60,7 @@ public class M3Printer extends CordovaPlugin {
 
 			// print.printText(String.valueOf(bit.getWidth()));
 			// print.printText("----------------------------", 1, true);
-			print.printBitmap(bit);
+			print.printBitmap(is);
 
 			print.printEndLine();
 			callbackContext.success("1");
