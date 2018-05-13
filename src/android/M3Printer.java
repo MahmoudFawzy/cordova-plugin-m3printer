@@ -48,7 +48,15 @@ public class M3Printer extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		if (action.equals("printText")) {
+		if (action.equals("printTest")) {
+			String txt = args.getString(0);
+			print.printText("--------------------------------");
+			print.printText(json.getString("Footer"), 1, true);
+
+			print.printEndLine();
+			callbackContext.success("1");
+			return true;
+		} else if (action.equals("printText")) {
 			String txt = args.getString(0);
 
 			// InputStream is2 = context.getResources().openRawResource(R.raw.img);
