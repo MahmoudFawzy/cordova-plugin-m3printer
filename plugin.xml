@@ -26,5 +26,6 @@
         <!--[resources]-->
         <resource-file src="src/android/res/drawable/img.png" target="res/drawable/img.png" />
         <resource-file src="src/android/res/drawable/logo.jpg" target="res/drawable/logo.jpg" />
+        <resource-file src="src/android/res/raw/logo.bmp" target="res/raw/logo.bmp" />
     </platform>
 </plugin>
