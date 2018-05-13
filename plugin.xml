@@ -25,5 +25,6 @@
         <source-file src="src/android/BitmapEncoder.java" target-dir="src/com/m3printer/plugin/" />
         <!--[resources]-->
         <resource-file src="src/android/res/drawable/img.png" target="res/drawable/img.png" />
+        <resource-file src="src/android/res/drawable/logo.jpg" target="res/drawable/logo.jpg" />
     </platform>
 </plugin>
