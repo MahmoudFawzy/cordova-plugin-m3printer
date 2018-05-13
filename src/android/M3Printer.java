@@ -55,9 +55,10 @@ public class M3Printer extends CordovaPlugin {
 			String txt = args.getString(0);
 
 			InputStream is = context.getResources().openRawResource(getAppResource("img", "drawable"));
-			BufferedInputStream br = new BufferedInputStream(is);
+			// BufferedInputStream br = new BufferedInputStream(is);
+			Bitmap bit = BitmapFactory.decodeStream(is);
 
-			print.printText("--------------------------------");
+			print.printText(bit.getWidth());
 			print.printText("محمود", 1, true);
 
 			print.printEndLine();
