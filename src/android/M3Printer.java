@@ -58,7 +58,7 @@ public class M3Printer extends CordovaPlugin {
 			// BufferedInputStream br = new BufferedInputStream(is);
 			Bitmap bit = BitmapFactory.decodeStream(is);
 
-			print.printText(bit.getWidth().toString());
+			print.printText(String.valueOf(bit.getWidth()));
 			print.printText("محمود", 1, true);
 
 			print.printEndLine();
