@@ -38,18 +38,23 @@ import android.R;
 public class M3Printer extends CordovaPlugin {
 	public static com.nbbse.mobiprint3.Printer print;
 	public Context context;
+	CordovaInterface mycordova;
 
 	public void initialize(CordovaInterface cordova, CordovaWebView webView) {
 		super.initialize(cordova, webView);
 		print = Printer.getInstance();
 		context = this.cordova.getActivity().getApplicationContext();
-
+		mycordova = cordova;
 	}
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		if (action.equals("printTest")) {
 			String txt = args.getString(0);
+
+			InputStream is = mycordova.getResources().openRawResource(getAppResource("img", "drawable"));
+			BufferedInputStream br = new BufferedInputStream(is);
+
 			print.printText("--------------------------------");
 			print.printText("محمود", 1, true);
 
@@ -186,6 +191,11 @@ public class M3Printer extends CordovaPlugin {
 		} else {
 			return false;
 		}
+	}
+
+	private int getAppResource(String name, String type) {
+		return mycordova.getActivity().getResources().getIdentifier(name, type,
+				mycordova.getActivity().getPackageName());
 	}
 
 	private static void convertARGBToGrayscale(int[] argb, int width, int height) {
