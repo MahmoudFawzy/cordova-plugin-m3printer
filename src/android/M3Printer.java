@@ -55,11 +55,6 @@ public class M3Printer extends CordovaPlugin {
 			String txt = args.getString(0);
 
 			InputStream is = context.getResources().openRawResource(getAppResource("logo", "raw"));
-			//Bitmap bit = BitmapFactory.decodeStream(is);
-			// BufferedInputStream br = new BufferedInputStream(is);
-
-			// print.printText(String.valueOf(bit.getWidth()));
-			// print.printText("----------------------------", 1, true);
 			print.printBitmap(is);
 
 			print.printEndLine();
@@ -68,10 +63,8 @@ public class M3Printer extends CordovaPlugin {
 		} else if (action.equals("printText")) {
 			String txt = args.getString(0);
 
-			// InputStream is2 = context.getResources().openRawResource(R.raw.img);
-			// InputStream is3 = context.getResources().openRawResource(R.raw.test);
-			// InputStream is = context.getResources().openRawResource(R.raw.bitmap24);
-			// print.printBitmap(is);
+			InputStream is = context.getResources().openRawResource(getAppResource("logo", "raw"));
+			print.printBitmap(is);
 
 			JSONObject json = new JSONObject(txt);
 			JSONArray jReciept = json.getJSONArray("Fields");
