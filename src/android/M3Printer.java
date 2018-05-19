@@ -56,23 +56,22 @@ public class M3Printer extends CordovaPlugin {
 
 			InputStream is = context.getResources().openRawResource(getAppResource("logo", "raw"));
 			print.printBitmap(is);
-			/////////////////////////////////////
+
 			JSONObject json = new JSONObject(txt);
 			JSONArray jReciept = json.getJSONArray("Fields");
 
 			for (int i = 0; i < jReciept.length(); i++) {
 				JSONObject jO = jReciept.getJSONObject(i);
-				print.printText((prepLabel(jO.getString("FieldName")) + jO.getString("Value")));
-
+				print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) + jO.getString("Value")));
 			}
 
-			print.printText((prepLabel("تكلفة الخدمة") + json.getString("Totalprice")));
+			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")));
 
-			print.printText((prepLabel("تكلفة الخدمة") + json.getString("Fees")));
+			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Fees")));
 
 			int tot = json.getInt("Totalprice") + json.getInt("Fees");
 
-			print.printText((prepLabel("الإجمالي") + String.valueOf(tot)));
+			print.printText(String.valueOf(prepLabel("الإجمالي") + String.valueOf(tot)));
 
 			String sDate = json.getString("AddedTime");
 
@@ -85,10 +84,11 @@ public class M3Printer extends CordovaPlugin {
 			}
 			SimpleDateFormat dateFormat_date = new SimpleDateFormat("dd-MM-yyyy");
 			SimpleDateFormat dateFormat_time = new SimpleDateFormat("hh:mm aa");
-			print.printText((prepLabel("تاريخ التحصيل") + dateFormat_time.format(convertedDate)));
-			print.printText((prepLabel("وقت التحصيل") + dateFormat_date.format(convertedDate)));
-			print.printText((prepLabel("رقم الفرع") + json.getString("AgentCode")));
-			print.printText((prepLabel("رقم الفاتورة") + json.getString("InvoiceId")));
+			print.printText(
+					String.valueOf(prepLabel("تاريخ التحصيل") + dateFormat_time.format(convertedDate)));
+			print.printText(String.valueOf(prepLabel("وقت التحصيل") + dateFormat_date.format(convertedDate)));
+			print.printText(String.valueOf(prepLabel("رقم الفرع") + json.getString("AgentCode")));
+			print.printText(String.valueOf(prepLabel("رقم الفاتورة") + json.getString("InvoiceId")));
 
 			int s = json.getInt("Status");
 			String s_str = "غير محدد";
@@ -99,7 +99,7 @@ public class M3Printer extends CordovaPlugin {
 			} else if (s == 1 || s == 3 || s == 4) {
 				s_str = "مسدد";
 			}
-			print.printText((prepLabel("حالة الفاتورة") + s_str));
+			print.printText(String.valueOf(prepLabel("حالة الفاتورة") + s_str));
 
 			print.printText("--------------------------------");
 			print.printText(json.getString("Footer"));
