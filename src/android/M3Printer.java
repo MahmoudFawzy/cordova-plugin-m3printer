@@ -54,6 +54,7 @@ public class M3Printer extends CordovaPlugin {
 		if (action.equals("printTest")) {
 			String txt = args.getString(0);
 
+			print.printText(txt);
 			InputStream is = context.getResources().openRawResource(getAppResource("logo", "raw"));
 			print.printBitmap(is);
 
