@@ -109,10 +109,7 @@ public class M3Printer extends CordovaPlugin {
 			print.printEndLine();
 			callbackContext.success("1");
 			return true;
-			/////////////////////////////////////////
-			print.printEndLine();
-			callbackContext.success("1");
-			return true;
+
 		} else if (action.equals("printText")) {
 			String txt = args.getString(0);
 
