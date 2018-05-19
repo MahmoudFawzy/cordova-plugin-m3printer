@@ -247,9 +247,9 @@ public class M3Printer extends CordovaPlugin {
 
 	private String prepLabel(String label) {
 		label += ":";
-		for (int f = 0; label.length() < 15; f++) {
-			label = " " + label;
-		}
+		// for (int f = 0; label.length() < 15; f++) {
+		// label = " " + label;
+		// }
 
 		return label;
 	}
