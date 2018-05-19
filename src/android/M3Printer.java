@@ -54,26 +54,25 @@ public class M3Printer extends CordovaPlugin {
 		if (action.equals("printTest")) {
 			String txt = args.getString(0);
 
-			print.printText(txt);
 			InputStream is = context.getResources().openRawResource(getAppResource("logo", "raw"));
 			print.printBitmap(is);
 
-			print.printText(txt);
 			JSONObject json = new JSONObject(txt);
 			JSONArray jReciept = json.getJSONArray("Fields");
 
 			for (int i = 0; i < jReciept.length(); i++) {
 				JSONObject jO = jReciept.getJSONObject(i);
-				print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) + jO.getString("Value")));
+				print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) + jO.getString("Value")), 1, true);
 			}
 
-			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")));
+			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")), 1, true);
+					
 
-			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Fees")));
+			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Fees")), 1, true);
 
 			int tot = json.getInt("Totalprice") + json.getInt("Fees");
 
-			print.printText(String.valueOf(prepLabel("الإجمالي") + String.valueOf(tot)));
+			print.printText(String.valueOf(prepLabel("الإجمالي") + String.valueOf(tot)), 1, true);
 
 			String sDate = json.getString("AddedTime");
 
@@ -87,10 +86,15 @@ public class M3Printer extends CordovaPlugin {
 			SimpleDateFormat dateFormat_date = new SimpleDateFormat("dd-MM-yyyy");
 			SimpleDateFormat dateFormat_time = new SimpleDateFormat("hh:mm aa");
 			print.printText(
-					String.valueOf(prepLabel("تاريخ التحصيل") + dateFormat_time.format(convertedDate)));
-			print.printText(String.valueOf(prepLabel("وقت التحصيل") + dateFormat_date.format(convertedDate)));
-			print.printText(String.valueOf(prepLabel("رقم الفرع") + json.getString("AgentCode")));
-			print.printText(String.valueOf(prepLabel("رقم الفاتورة") + json.getString("InvoiceId")));
+					String.valueOf(prepLabel("تاريخ التحصيل") + dateFormat_time.format(convertedDate)), 1, true);
+					
+
+			print.printText(String.valueOf(prepLabel("وقت التحصيل") + dateFormat_date.format(convertedDate)), 1, true);
+					
+
+			print.printText(String.valueOf(prepLabel("رقم الفرع") + json.getString("AgentCode")), 1, true);
+			print.printText(String.valueOf(prepLabel("رقم الفاتورة") + json.getString("InvoiceId")), 1, true);
+					
 
 			int s = json.getInt("Status");
 			String s_str = "غير محدد";
@@ -101,7 +105,7 @@ public class M3Printer extends CordovaPlugin {
 			} else if (s == 1 || s == 3 || s == 4) {
 				s_str = "مسدد";
 			}
-			print.printText(String.valueOf(prepLabel("حالة الفاتورة") + s_str));
+			print.printText(String.valueOf(prepLabel("حالة الفاتورة") + s_str), 1, true);
 
 			print.printText("--------------------------------");
 			print.printText(json.getString("Footer"));
@@ -243,7 +247,7 @@ public class M3Printer extends CordovaPlugin {
 
 	private String prepLabel(String label) {
 		label += ":";
-		for (int f = 0; label.length() < 25; f++) {
+		for (int f = 0; label.length() < 20; f++) {
 			label += " ";
 		}
 
