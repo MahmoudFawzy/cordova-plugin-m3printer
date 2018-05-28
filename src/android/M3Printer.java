@@ -68,17 +68,13 @@ public class M3Printer extends CordovaPlugin {
 				print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) + jO.getString("Value")), 1, true);
 			}
 
-			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")),1, true); 
+			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")),1, true);  
 					
 
 			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Fees")), 1, true);
 
 			int tot = json.getInt("Totalprice") + json.getInt("Fees");
-
-			print.printFormattedTextPrepare();
-			print.addString(prepLabel("الإجمالي"), 1, true);
-			print.addString(String.valueOf(tot), 2, true);
-			print.printFormattedText();
+			
 
 			String sDate = json.getString("AddedTime");
 
@@ -112,6 +108,11 @@ public class M3Printer extends CordovaPlugin {
 				s_str = "مسدد" ;
 			}
 			print.printText(String.valueOf(prepLabel("حالة الفاتورة") + s_str), 1, true);
+
+			print.printFormattedTextPrepare();
+			print.addString(prepLabel("الإجمالي"), 1, true);
+			print.addString(String.valueOf(tot), 2, true);
+			print.printFormattedText();
 
 			print.printText("--------------------------------");
 			print.printText(json.getString("Footer"));
