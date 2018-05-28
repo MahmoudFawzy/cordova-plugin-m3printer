@@ -1,6 +1,6 @@
 package com.m3printer;
 
-import com.nbbse.mobiprint3.*;
+import com.nbbse.printapi.*;
 import org.apache.cordova.*;
 
 import java.io.*;
