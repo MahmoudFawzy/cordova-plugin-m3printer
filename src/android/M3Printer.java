@@ -36,7 +36,7 @@ import android.content.*;
 import android.R;
 
 public class M3Printer extends CordovaPlugin {
-	public static com.nbbse.mobiprint3.Printer print;
+	public static Printer print;
 	public Context context;
 	CordovaInterface mycordova;
 	CordovaWebView mywebView;
