@@ -52,7 +52,6 @@ public class M3Printer extends CordovaPlugin {
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		if (action.equals("printTest")) {
-			
 
 			String txt = args.getString(0);
 
@@ -69,7 +68,7 @@ public class M3Printer extends CordovaPlugin {
 				print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) + jO.getString("Value")), 1, true);
 			}
 
-			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")),1, true);
+			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")),1, true); 
 					
 
 			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Fees")), 1, true);
@@ -77,10 +76,9 @@ public class M3Printer extends CordovaPlugin {
 			int tot = json.getInt("Totalprice") + json.getInt("Fees");
 
 			print.printFormattedTextPrepare();
-			print.addString(String.valueOf(prepLabel("الإجمالي"), 1, true);
-			print.addString(String.valueOf(tot), 2, true); 
+			print.addString(prepLabel("الإجمالي"), 1, true);
+			print.addString(String.valueOf(tot), 2, true);
 			print.printFormattedText();
- 
 
 			String sDate = json.getString("AddedTime");
 
