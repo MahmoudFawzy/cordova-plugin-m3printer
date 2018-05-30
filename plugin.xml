@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin 
-    xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" 
     xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-m3printer" version="0.8.2">
     <name>M3Printer</name>
     <description>Printer Plugin</description>
@@ -22,8 +21,7 @@
         </config-file>
         <source-file src="src/android/com.m3printer.jar" target-dir="libs" />
         <source-file src="src/android/M3Printer.java" target-dir="src/com/m3printer/plugin/" />
-        <!-- <source-file src="src/android/BitmapEncoder.java" target-dir="src/com/m3printer/plugin/" /> -->
         <!--[resources]-->
-        <resource-file src="src/res/raw/logo.bmp" target="res/raw/logo.bmp" />
+        <!-- <resource-file src="src/res/raw/logo.bmp" target="res/raw/logo.bmp" /> -->
     </platform>
 </plugin>
