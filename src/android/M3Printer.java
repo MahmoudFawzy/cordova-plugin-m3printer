@@ -51,76 +51,7 @@ public class M3Printer extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		if (action.equals("printTest")) {
-
-			String txt = args.getString(0);
-
-			InputStream is = context.getResources().openRawResource(getAppResource("logo", "raw"));
-			print.printBitmap(is);
-
-			JSONObject json = new JSONObject(txt);
-			JSONArray jReciept = json.getJSONArray("Fields");
-
-			print.printText(String.valueOf(prepLabel("الخدمة") + json.getString("ServiceName")), 1, true);
-
-			for (int i = 0; i < jReciept.length(); i++) {
-				JSONObject jO = jReciept.getJSONObject(i);
-				print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) + jO.getString("Value")), 1, true);
-			}
-
-			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")), 1, true);
-					
-
-			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Fees")), 1, true);
-
-			int tot = json.getInt("Totalprice") + json.getInt("Fees");
-
-			print.printFormattedTextPrepare();
-			print.addString(prepLabel("الإجمالي"), 1, true);
-			print.addString(String.valueOf(tot), 2, true);
-			print.printFormattedText();
-
-			String sDate = json.getString("AddedTime");
-
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
-			Date convertedDate = new Date();
-			try {
-				convertedDate = dateFormat.parse(sDate);
-			} catch (ParseException ex) {
-				// Do something
-			}
-			SimpleDateFormat dateFormat_date = new SimpleDateFormat("dd-MM-yyyy");
-			SimpleDateFormat dateFormat_time = new SimpleDateFormat("hh:mm aa");
-			print.printText(
-					String.valueOf(prepLabel("تاريخ التحصيل") + dateFormat_time.format(convertedDate)), 1,
-					true);
-
-			print.printText(String.valueOf(prepLabel("وقت التحصيل") + dateFormat_date.format(convertedDate)), 1, true);
-					
-
-			print.printText(String.valueOf(prepLabel("رقم الفرع") + json.getString("AgentCode")), 1, true);
-			print.printText(String.valueOf(prepLabel("رقم الفاتورة") + json.getString("InvoiceId")), 1, true);
-					
-
-			int s = json.getInt("Status");
-			String s_str = "غير محدد";
-			if (s == 0) {
-				s_str = "التنفيذ";
-			} else if (s == 2) {
-				s_str = "مسترجع";
-			} else if (s == 1 || s == 3 || s == 4) {
-				s_str = "مسدد";
-			}
-			print.printText(String.valueOf(prepLabel("حالة الفاتورة") + s_str), 1, true);
-
-			print.printText("--------------------------------");
-			print.printText(json.getString("Footer"));
-
-			print.printEndLine();
-			callbackContext.success("1");
-			return true;
-
-		} else if (action.equals("printText")) {
+		if (action.equals("printText")) {
 			String txt = args.getString(0);
 
 			InputStream is = context.getResources().openRawResource(getAppResource("logo", "raw"));
