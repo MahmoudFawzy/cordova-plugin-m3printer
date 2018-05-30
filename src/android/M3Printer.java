@@ -69,6 +69,7 @@ public class M3Printer extends CordovaPlugin {
 			}
 
 			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")), 1, true);
+					
 
 			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Fees")), 1, true);
 
@@ -90,13 +91,16 @@ public class M3Printer extends CordovaPlugin {
 			}
 			SimpleDateFormat dateFormat_date = new SimpleDateFormat("dd-MM-yyyy");
 			SimpleDateFormat dateFormat_time = new SimpleDateFormat("hh:mm aa");
-			print.printText(String.valueOf(prepLabel("تاريخ التحصيل") + dateFormat_time.format(convertedDate)), 1,
+			print.printText(
+					String.valueOf(prepLabel("تاريخ التحصيل") + dateFormat_time.format(convertedDate)), 1,
 					true);
 
 			print.printText(String.valueOf(prepLabel("وقت التحصيل") + dateFormat_date.format(convertedDate)), 1, true);
+					
 
 			print.printText(String.valueOf(prepLabel("رقم الفرع") + json.getString("AgentCode")), 1, true);
 			print.printText(String.valueOf(prepLabel("رقم الفاتورة") + json.getString("InvoiceId")), 1, true);
+					
 
 			int s = json.getInt("Status");
 			String s_str = "غير محدد";
@@ -259,5 +263,3 @@ public class M3Printer extends CordovaPlugin {
 	}
 
 }
-
-	
