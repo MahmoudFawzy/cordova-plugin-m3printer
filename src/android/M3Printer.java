@@ -97,6 +97,14 @@ public class M3Printer extends CordovaPlugin {
 			print.printText(String.valueOf(prepLabel("الإجمالي") + String.valueOf(tot)), 2, true);
 
 			print.printText("--------------------------------");
+
+			String desc = json.getString("InvoiceDescription");
+			if (desc.length()) {
+
+				print.printText(desc, 1, true);
+				print.printText("--------------------------------");
+			}
+
 			String sDate = json.getString("AddedTime");
 
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
@@ -140,6 +148,8 @@ public class M3Printer extends CordovaPlugin {
 			/*
 			 * print.printText("--------------------------------"); print.printText(
 			 * "عند البطئ في الشبكة قد يستغرق تنفيذ العملية 24 ساعة", 1, true); 
+			 * 
+			 * 
 			 * 
 			 * 
 			 * 
@@ -227,10 +237,11 @@ public class M3Printer extends CordovaPlugin {
 			callbackContext.success("1");
 			return true;
 		} else if (action.equals("printJson")) {
-			String txt = args.getString(0);
 
 			InputStream is = context.getResources().openRawResource(getAppResource("logo", "raw"));
 			print.printBitmap(is);
+
+			String txt = args.getString(0);
 
 			JSONObject json = new JSONObject(txt);
 			JSONArray jReciept = json.getJSONArray("data");
