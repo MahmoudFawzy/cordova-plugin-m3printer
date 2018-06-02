@@ -86,6 +86,7 @@ public class M3Printer extends CordovaPlugin {
 			double tot = json.getDouble("Totalprice") + json.getDouble("Fees");
 
 			print.printText(String.valueOf(prepLabel("الإجمالي") + String.valueOf(tot)), 1, true);
+			print.printText(String.valueOf(prepLabel("الإجمالي") + String.valueOf(tot)), 2, true);
 
 			print.printText(prepLabel("الإجمالي"), 1, true);
 			print.printText(String.valueOf(tot), 2, false);
@@ -104,7 +105,7 @@ public class M3Printer extends CordovaPlugin {
 			} catch (ParseException ex) {
 				// Do something
 			}
-			SimpleDateFormat dateFormat_date = new SimpleDateFormat("dd-MM-yyyy");
+			SimpleDateFormat dateFormat_date = new SimpleDateFormat("dd MM yyyy");
 			SimpleDateFormat dateFormat_time = new SimpleDateFormat("hh:mm aa");
 			print.printText(
 					String.valueOf(prepLabel("تاريخ التحصيل") + dateFormat_time.format(convertedDate)), 1,
