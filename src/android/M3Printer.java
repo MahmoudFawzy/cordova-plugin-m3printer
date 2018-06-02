@@ -78,13 +78,18 @@ public class M3Printer extends CordovaPlugin {
 							true);
 				}
 
+				if (Arrays.asList("181,182,183,238,239,240,256,257,258".split(","))
+						.indexOf(jO.getString("SFId")) > -1) {
+
+					showFees = false;
+				}
+
 			}
 			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")), 1, true); 
 					
 
 			if (showFees) {
-				print.printText(String.valueOf(prepLabel("رسوم التحصيل") + json.getString("Fees")), 1, true);
-
+				print.printText(String.valueOf(prepLabel("رسوم التحصيل") + json.getString("Fees")), 1, true); 
 			}
 
 			double tot = json.getDouble("Totalprice") + json.getDouble("Fees");
