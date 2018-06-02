@@ -117,7 +117,7 @@ public class M3Printer extends CordovaPlugin {
 			print.printText(String.valueOf(prepLabel("رقم الفاتورة") + json.getString("InvoiceId")), 1, true);
 					
 
-			int s = json.getDouble("Status");
+			double s = json.getDouble("Status");
 			String s_str = "غير محدد";
 			if (s == 0) {
 				s_str = "التنفيذ";
@@ -159,7 +159,7 @@ public class M3Printer extends CordovaPlugin {
 			print.printText("رسوم التحصيل", 1, true);
 			print.printText(json.getString("Fees"), 1, false);
 
-			int tot = json.getDouble("Totalprice") + json.getDouble("Fees");
+			double tot = json.getDouble("Totalprice") + json.getDouble("Fees");
 			print.printText("الإجمالي", 1, true);
 			print.printText(String.valueOf(tot), 1, false);
 
@@ -187,7 +187,7 @@ public class M3Printer extends CordovaPlugin {
 			print.printText("رقم الفاتورة", 1, true);
 			print.printText(json.getString("InvoiceId"), 1, false);
 
-			int s = json.getDouble("Status");
+			double s = json.getDouble("Status");
 			String s_str = "غير محدد";
 			if (s == 0) {
 				s_str = "التنفيذ";
