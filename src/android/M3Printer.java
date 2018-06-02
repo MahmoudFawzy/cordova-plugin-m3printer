@@ -65,17 +65,26 @@ public class M3Printer extends CordovaPlugin {
 
 			for (int i = 0; i < jReciept.length(); i++) {
 				JSONObject jO = jReciept.getJSONObject(i);
-				print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) + jO.getString("Value")), 1, true);
+
+				if (java.util.Arrays.asList("1100,1094,1106,691".split(",")).indexOf(jO.getString("SFId")) > -1) {
+					print.printText(prepLabel(jO.getString("FieldName")), 1, true);
+					print.printText(jO.getString("Value"), 2, false);
+				} else {
+					print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) + jO.getString("Value")), 1,
+							true);
+				}
+
 			}
 
 			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")), 1, true); 
 					
+
 			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Fees")), 1, true);
 
 			int tot = json.getInt("Totalprice") + json.getInt("Fees");
 
 			print.printText(prepLabel("الإجمالي"), 1, true);
-			print.printText(String.valueOf(tot), 1, true);
+			print.printText(String.valueOf(tot), 2, false);
 
 			// print.printFormattedTextPrepare();
 			// print.addString(prepLabel("الإجمالي"), 1, true);
