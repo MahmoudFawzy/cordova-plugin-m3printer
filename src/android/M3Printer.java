@@ -74,9 +74,12 @@ public class M3Printer extends CordovaPlugin {
 				 * print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) +
 				 * jO.getString("Value")), 1, true); }
 				 */
+
+				print.printText("--------------------------------");
 				print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) + jO.getString("Value")), 1, true);
 
 			}
+			print.printText("--------------------------------");
 
 			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")), 1, true); 
 					
