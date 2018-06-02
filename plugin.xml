@@ -19,7 +19,7 @@
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         </config-file>
-        -         <source-file src="src/android/com.m3printer.jar" target-dir="libs" />
+        -                 <source-file src="src/android/com.m3printer.jar" target-dir="libs" />
         <source-file src="src/android/M3Printer.java" target-dir="src/com/m3printer/plugin/" />
         <!--[resources]-->
         <resource-file src="src/res/raw/logo.bmp" target="res/raw/logo.bmp" />
