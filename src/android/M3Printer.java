@@ -137,12 +137,13 @@ public class M3Printer extends CordovaPlugin {
 				s_str = "عملية ناجحة";
 			}
 			print.printText("     " + s_str, 2, true);
-
+			/*
+			 * print.printText("--------------------------------"); print.printText(
+			 * "عند البطئ في الشبكة قد يستغرق تنفيذ العملية 24 ساعة", 1, true); 
+			 * 
+			 */
 			print.printText("--------------------------------");
-			print.printText(
-					"عند البطئ في الشبكة قد يستغرق تنفيذ العملية 24 ساعة", 1, true);
-					
-
+			print.printText(" تسعدنا خدمتكم - 02-24561600", 1, true); 
 			print.printText("--------------------------------");
 			print.printText(json.getString("Footer"));
 
