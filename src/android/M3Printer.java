@@ -117,10 +117,10 @@ public class M3Printer extends CordovaPlugin {
 			// _time.format(convertedDate)), 1, true);
 
 			//////////////////////////////////////////////////
-			print.printFormattedTextPrepare();
-			print.addString(prepLabel("تاريخ التحصيل"), 1, true);
-			print.addString(dateFormat_date.format(convertedDate), 2, true);
-			print.printFormattedText();
+			// print.printFormattedTextPrepare();
+			// print.addString(prepLabel("تاريخ التحصيل"), 1, true);
+			// print.addString(dateFormat_date.format(convertedDate), 2, true);
+			// print.printFormattedText();
 			//////////////////////////////////////////////////
 
 			print.printText(String.valueOf(prepLabel("رقم الفرع") + json.getString("AgentCode")), 1, true);
@@ -141,9 +141,11 @@ public class M3Printer extends CordovaPlugin {
 			 * print.printText("--------------------------------"); print.printText(
 			 * "عند البطئ في الشبكة قد يستغرق تنفيذ العملية 24 ساعة", 1, true); 
 			 * 
+			 * 
+			 * 
 			 */
 			print.printText("--------------------------------");
-			print.printText(" تسعدنا خدمتكم - 02-24561600", 1, true); 
+			print.printText(" تسعدنا خدمتكم -  0224561600", 1, true); 
 			print.printText("--------------------------------");
 			print.printText(json.getString("Footer"));
 
@@ -285,7 +287,7 @@ public class M3Printer extends CordovaPlugin {
 	}
 
 	private String prepLabel(String label) {
-		label += " :  ";
+		label += " : ";
 		// for (int f = 0; label.length() < 15; f++) {
 		// label = " " + label;
 		// }
