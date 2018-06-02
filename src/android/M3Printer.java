@@ -99,7 +99,7 @@ public class M3Printer extends CordovaPlugin {
 			print.printText("--------------------------------");
 
 			String desc = json.getString("InvoiceDescription");
-			if (desc.length()) {
+			if (desc.length() > 0) {
 
 				print.printText(desc, 1, true);
 				print.printText("--------------------------------");
@@ -148,6 +148,7 @@ public class M3Printer extends CordovaPlugin {
 			/*
 			 * print.printText("--------------------------------"); print.printText(
 			 * "عند البطئ في الشبكة قد يستغرق تنفيذ العملية 24 ساعة", 1, true); 
+			 * 
 			 * 
 			 * 
 			 * 
