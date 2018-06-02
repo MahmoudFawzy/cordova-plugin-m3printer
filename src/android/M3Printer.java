@@ -65,8 +65,11 @@ public class M3Printer extends CordovaPlugin {
 
 			for (int i = 0; i < jReciept.length(); i++) {
 				JSONObject jO = jReciept.getJSONObject(i);
-
-				if (java.util.Arrays.asList("1100,1094,1106,691".split(",")).indexOf(jO.getString("SFId")) > -1) {
+				/*
+				 * java.util.Arrays.asList("1100,1094,1106,691".split(",")).indexOf(jO.getString
+				 * ("SFId")) > -1
+				 */
+				if (false) {
 					print.printText(prepLabel(jO.getString("FieldName")), 1, true);
 					print.printText(jO.getString("Value"), 2, false);
 				} else {
