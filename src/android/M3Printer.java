@@ -96,11 +96,6 @@ public class M3Printer extends CordovaPlugin {
 
 			print.printText(String.valueOf(prepLabel("الإجمالي") + String.valueOf(tot)), 2, true);
 
-			// print.printFormattedTextPrepare();
-			// print.addString(prepLabel("الإجمالي"), 1, true);
-			// print.addString(String.valueOf(tot), 2, true);
-			// print.printFormattedText();
-
 			print.printText("--------------------------------");
 			String sDate = json.getString("AddedTime");
 
@@ -111,15 +106,22 @@ public class M3Printer extends CordovaPlugin {
 			} catch (ParseException ex) {
 				// Do something
 			}
-			SimpleDateFormat dateFormat_date = new SimpleDateFormat("dd MMMM yyyy  HH:mm");
-			SimpleDateFormat dateFormat_time = new SimpleDateFormat("HH:mm");
+			SimpleDateFormat dateFormat_date = new SimpleDateFormat("dd MMMM yyyy");
+			SimpleDateFormat dateFormat_time = new SimpleDateFormat("hh:mm aa");
 
 			print.printText(
 					String.valueOf(prepLabel("تاريخ التحصيل") + dateFormat_date.format(convertedDate)), 1,
 					true);
 
-			// print.printText(String.valueOf(prepLabel("وقت التحصيل") + dateForma
-			// _date.format(convertedDate)), 1, true);
+			print.printText(String.valueOf(prepLabel("وقت التحصيل") + dateFormat_time.format(convertedDate)), 1, true);
+					
+
+			//////////////////////////////////////////////////
+			print.printFormattedTextPrepare();
+			print.addString(prepLabel("تاريخ التحصيل"), 1, true);
+			print.addString(dateFormat_date.format(convertedDate), 2, true);
+			print.printFormattedText();
+			//////////////////////////////////////////////////
 
 			print.printText(String.valueOf(prepLabel("رقم الفرع") + json.getString("AgentCode")), 1, true);
 			print.printText(String.valueOf(prepLabel("رقم الفاتورة") + json.getString("InvoiceId")), 1, true);
@@ -134,7 +136,7 @@ public class M3Printer extends CordovaPlugin {
 			} else if (s == 1 || s == 3 || s == 4) {
 				s_str = "عملية ناجحة";
 			}
-			print.printText("      " + s_str, 2, true);
+			print.printText("     " + s_str, 2, true);
 
 			print.printText("--------------------------------");
 			print.printText(
