@@ -69,17 +69,20 @@ public class M3Printer extends CordovaPlugin {
 				/*
 				 * java.util.Arrays.asList("1100,1094,1106,691".split(",")).indexOf(jO.getString
 				 * ("SFId")) > -1
-				 * 
-				 * if (false) { print.printText(prepLabel(jO.getString("FieldName")), 1, true);
-				 * print.printText(jO.getString("Value"), 2, false); } else {
-				 * print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) +
-				 * jO.getString("Value")), 1, true); }
 				 */
+				if (Arrays.asList("1100,1094,1106,691".split(",")).indexOf(jO.getString("SFId")) > -1) {
+					print.printText(prepLabel(jO.getString("FieldName")), 2, true);
+					print.printText(jO.getString("Value"), 2, false);
+				} else {
+					print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) + jO.getString("Value")), 1,
+							true);
+				}
 
-				print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) + jO.getString("Value")), 1, true);
+				// print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) +
+				// jO.getString("Value")), 1, true);
 
 			}
-			print.printText("--------------------------------");
+			// print.printText("--------------------------------");
 
 			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")), 1, true); 
 					
@@ -88,7 +91,8 @@ public class M3Printer extends CordovaPlugin {
 
 			double tot = json.getDouble("Totalprice") + json.getDouble("Fees");
 
-			// print.printText(String.valueOf(prepLabel("الإجمالي") + String.valueOf(tot)),
+			// print.printText(String.valueOf(prepLabel("الإجمالي") + String.
+			// alueOf(tot)),
 			// 1, true);
 			// print.printText("--------------------------------");
 			print.printText(String.valueOf(prepLabel("الإجمالي") + String.valueOf(tot)), 2, true);
@@ -115,8 +119,8 @@ public class M3Printer extends CordovaPlugin {
 			} catch (ParseException ex) {
 				// Do something
 			}
-			SimpleDateFormat dateFormat_date = new SimpleDateFormat("dd MM yyyy");
-			SimpleDateFormat dateFormat_time = new SimpleDateFormat("hh:mm aa");
+			SimpleDateFormat dateFormat_date = new SimpleDateFormat("dd MMMM yyyy");
+			SimpleDateFormat dateFormat_time = new SimpleDateFormat("HH:mm");
 
 			print.printText(
 					String.valueOf(prepLabel("تاريخ التحصيل") + dateFormat_time.format(convertedDate)), 1,
@@ -144,7 +148,7 @@ public class M3Printer extends CordovaPlugin {
 			print.printText(json.getString("Footer"));
 
 			print.printEndLine();
-			callbackContext.success("111");
+			callbackContext.success("1");
 			return true;
 
 		} else if (action.equals("printText")) {
