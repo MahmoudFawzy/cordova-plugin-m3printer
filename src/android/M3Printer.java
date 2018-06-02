@@ -83,7 +83,7 @@ public class M3Printer extends CordovaPlugin {
 
 			print.printText(String.valueOf(prepLabel("رسوم التحصيل") + json.getString("Fees")), 1, true);
 
-			int double = json.getDouble("Totalprice") + json.getDouble("Fees");
+			double tot = json.getDouble("Totalprice") + json.getDouble("Fees");
 
 			print.printText(prepLabel("الإجمالي"), 1, true);
 			print.printText(String.valueOf(tot), 2, false);
