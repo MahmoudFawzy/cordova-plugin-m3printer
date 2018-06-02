@@ -106,8 +106,8 @@ public class M3Printer extends CordovaPlugin {
 			} catch (ParseException ex) {
 				// Do something
 			}
-			SimpleDateFormat dateFormat_date = new SimpleDateFormat("dd-MM-yyyy hh:mm aa");
-			SimpleDateFormat dateFormat_time = new SimpleDateFormat("hh:mm aa");
+			SimpleDateFormat dateFormat_date = new SimpleDateFormat("dd-MM-yyyy hh:mm aa", Locale.ENGLISH);
+			SimpleDateFormat dateFormat_time = new SimpleDateFormat("hh:mm aa", Locale.ENGLISH);
 
 			print.printText(
 					String.valueOf(prepLabel("تاريخ التحصيل") + dateFormat_date.format(convertedDate)), 1,
