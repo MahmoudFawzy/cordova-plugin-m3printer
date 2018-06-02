@@ -58,6 +58,7 @@ public class M3Printer extends CordovaPlugin {
 			InputStream is = context.getResources().openRawResource(getAppResource("logo", "raw"));
 			print.printBitmap(is);
 
+			boolean showFees = true;
 			JSONObject json = new JSONObject(txt);
 			JSONArray jReciept = json.getJSONArray("Fields");
 
@@ -70,6 +71,8 @@ public class M3Printer extends CordovaPlugin {
 				if (Arrays.asList("1100,1094,1106,691".split(",")).indexOf(jO.getString("SFId")) > -1) {
 					print.printText(prepLabel(jO.getString("FieldName")), 2, true);
 					print.printText(jO.getString("Value"), 2, false);
+
+					showFees = false;
 				} else {
 					print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) + jO.getString("Value")), 1,
 							true);
@@ -79,7 +82,10 @@ public class M3Printer extends CordovaPlugin {
 			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")), 1, true); 
 					
 
-			print.printText(String.valueOf(prepLabel("رسوم التحصيل") + json.getString("Fees")), 1, true);
+			if (showFees) {
+				print.printText(String.valueOf(prepLabel("رسوم التحصيل") + json.getString("Fees")), 1, true);
+
+			}
 
 			double tot = json.getDouble("Totalprice") + json.getDouble("Fees");
 
@@ -126,7 +132,10 @@ public class M3Printer extends CordovaPlugin {
 			print.printText("      " + s_str, 2, true);
 
 			print.printText("--------------------------------");
-			print.printText("عند البطئ في الشبكة قد يستغرق تنفيذ العملية 24 ساعة", 1, true);
+			print.printText(
+					"عند البطئ في الشبكة قد يستغرق تنفيذ العملية 24 ساعة", 1, true);
+					
+
 			print.printText("--------------------------------");
 			print.printText(json.getString("Footer"));
 
