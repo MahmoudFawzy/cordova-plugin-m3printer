@@ -202,7 +202,7 @@ public class M3Printer extends CordovaPlugin {
 			print.printText("--------------------------------");
 
 			String desc = json.getString("InvoiceDescription");
-			if (!desc.trim().equals("")) {
+			if (!desc.trim().equals("null")) {
 				print.printText(desc, 1, true);
 				print.printText("--------------------------------");
 			}
