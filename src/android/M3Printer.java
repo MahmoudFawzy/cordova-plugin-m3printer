@@ -278,17 +278,6 @@ public class M3Printer extends CordovaPlugin {
 			print.printEndLine();
 			callbackContext.success("1");
 			return true;
-		} else if (action.equals("printPath")) {
-			String txt = args.getString(0);
-
-			// BitmapFactory.Options options = new BitmapFactory.Options();
-			// options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-			// Bitmap bitmap = BitmapFactory.decodeFile(txt, options);
-
-			// print.printBitmap(txt);
-			// print.printEndLine();
-			// callbackContext.success(bitmap.getWidth());
-			return true;
 		} else if (action.equals("printBase64")) {
 			// String txt = args.getString(0);
 
