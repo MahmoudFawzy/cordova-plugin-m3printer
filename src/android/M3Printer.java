@@ -272,7 +272,7 @@ public class M3Printer extends CordovaPlugin {
 				// print.printText(String.valueOf(prepLabel(jO.getString("label")) +
 				// json.getString("value")), 1, true);
 				print.printText(jO.getString("label"), 1, true);
-				// print.printText(jO.getString("value"), 1, false);
+				print.printText(jO.getString("value"), 1, false);
 			}
 
 			print.printEndLine();
