@@ -181,7 +181,7 @@ public class M3Printer extends CordovaPlugin {
 							true);
 				}
 
-				if (Arrays.asList("181,182,183,238,239,240,256,257,258".split(","))
+				if (Arrays.asList("181,182,183,238,239,240,256,257,258,1724".split(","))
 						.indexOf(jO.getString("SFId")) > -1) {
 
 					showFees = false;
