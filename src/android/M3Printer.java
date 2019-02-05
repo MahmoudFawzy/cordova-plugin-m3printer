@@ -160,8 +160,7 @@ public class M3Printer extends CordovaPlugin {
 
 			InputStream is = context.getResources().openRawResource(getAppResource("logo", "raw"));
 			print.printBitmap(is);
-
-			boolean showFees = true;
+ 
 			JSONObject json = new JSONObject(txt);
 			JSONArray jReciept = json.getJSONArray("Fields");
 
@@ -171,27 +170,18 @@ public class M3Printer extends CordovaPlugin {
 			for (int i = 0; i < jReciept.length(); i++) {
 				JSONObject jO = jReciept.getJSONObject(i);
 
-				if (Arrays.asList("1100,1094,1106,691".split(",")).indexOf(jO.getString("SFId")) > -1) {
+				if (Arrays.asList("1100,1094,1106,691,1364,1724".split(",")).indexOf(jO.getString("SFId")) > -1) {
 					print.printText(prepLabel(jO.getString("FieldName")), 2, true);
 					print.printText(jO.getString("Value"), 2, false);
-
-					showFees = false;
+ 
 				} else {
 					print.printText(String.valueOf(prepLabel(jO.getString("FieldName")) + jO.getString("Value")), 1,
 							true);
-				}
-
-				if (Arrays.asList("181,182,183,238,239,240,256,257,258,1724".split(","))
-						.indexOf(jO.getString("SFId")) > -1) {
-
-					showFees = false;
-				}
-
+				}  
 			}
 			print.printText(String.valueOf(prepLabel("تكلفة الخدمة") + json.getString("Totalprice")), 1, true);
-					
-
-			if (showFees) {
+					 
+			if ( json.getDouble("Fees") > 0) {
 				print.printText(String.valueOf(prepLabel("رسوم التحصيل") + json.getString("Fees")), 1, true);
 			}
 
