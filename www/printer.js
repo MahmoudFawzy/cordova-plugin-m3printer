@@ -12,14 +12,14 @@ var printer = {
         }
         return false;
     },
-    printText: function (text, onSuccess, onError) {
-        exec(onSuccess, onError, "M3Printer", "printText", [text]);
+    printText: function (text, AppId, onSuccess, onError) {
+        exec(onSuccess, onError, "M3Printer", "printText", [text, AppId]);
     },
-    printTest: function (text, onSuccess, onError) {
-        exec(onSuccess, onError, "M3Printer", "printTest", [text]);
+    printTest: function (text, AppId, onSuccess, onError) {
+        exec(onSuccess, onError, "M3Printer", "printTest", [text, AppId]);
     },
-    printJson: function (text, onSuccess, onError) {
-        exec(onSuccess, onError, "M3Printer", "printJson", [text]);
+    printJson: function (text, AppId, onSuccess, onError) {
+        exec(onSuccess, onError, "M3Printer", "printJson", [text, AppId]);
     },
     printBase64: function (base64, onSuccess, onError) {
         exec(onSuccess, onError, "M3Printer", "printBase64", [base64]);
