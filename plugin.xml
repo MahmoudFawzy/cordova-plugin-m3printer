@@ -31,6 +31,5 @@
 		<source-file src="src/android/M3Printer.java" target-dir="src/com/m3printer/plugin/" />
 		<!-- [resources] -->
 		<resource-file src="src/res/raw/logo.bmp" target="res/raw/logo.bmp" />
-		<resource-file src="src/res/raw/logo30.bmp" target="res/raw/logo30.bmp" />
 	</platform>
 </plugin>
