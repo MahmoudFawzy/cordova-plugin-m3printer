@@ -159,10 +159,10 @@ public class M3Printer extends CordovaPlugin {
 			String txt = args.getString(0);
 			String AppId = args.getString(1);
 			String Logo = "logo";
-			if(AppId == "30"){
-				Logo = "logo30";
+			// if(AppId == "30"){
+			// 	Logo = "logo30";
 
-			}
+			// }
 
 			InputStream is = context.getResources().openRawResource(getAppResource(Logo, "raw"));
 			print.printBitmap(is);
@@ -257,9 +257,9 @@ public class M3Printer extends CordovaPlugin {
 			String txt = args.getString(0);
 			String AppId = args.getString(1);
 			String Logo = "logo";
-			if(AppId == "30"){
-				Logo = "logo30"; 
-			}
+			// if(AppId == "30"){
+			// 	Logo = "logo30"; 
+			// }
 
 			InputStream is = context.getResources().openRawResource(getAppResource(Logo, "raw"));
 			print.printBitmap(is);

@@ -13,15 +13,12 @@ var printer = {
     return false;
   },
   printText: function(text, onSuccess, onError, AppId) {
-    alert(AppId);
     exec(onSuccess, onError, "M3Printer", "printText", [text, AppId]);
   },
   printTest: function(text, onSuccess, onError, AppId) {
-    alert(AppId);
     exec(onSuccess, onError, "M3Printer", "printTest", [text, AppId]);
   },
   printJson: function(text, onSuccess, onError, AppId) {
-    alert(AppId);
     exec(onSuccess, onError, "M3Printer", "printJson", [text, AppId]);
   },
   printBase64: function(base64, onSuccess, onError) {
