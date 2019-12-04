@@ -136,11 +136,11 @@ public class M3Printer extends CordovaPlugin {
 
 			double s = json.getDouble("Status");
 			String s_str = "غير محدد";
-			if (s == 0) {
+			if (s == 0 && false) {
 				s_str = "عملية ناجحة";
 			} else if (s == 2) {
 				s_str = "مسترجع";
-			} else if (s == 1 || s == 3 || s == 4) {
+			} else if (s == 0 || s == 1 || s == 3 || s == 4) {
 				s_str = "عملية ناجحة";
 			}
 			print.printText("     " + s_str, 2, true);
